@@ -1,21 +1,27 @@
 /*--------------------------------*- C++ -*----------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     | Version:  v2112
+   \\    /   O peration     | Version:  v2306
     \\  /    A nd           | Website:  www.openfoam.com
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 Description
-    Writes out values of fields from cells nearest to specified locations.
+    Writes graph data for specified fields along a line, specified by start
+    and end points.
 
 \*---------------------------------------------------------------------------*/
 
-#includeEtc "caseDicts/postProcessing/probes/probes.cfg"
+start   (6 0 0);
+end     (6 0 1);
+fields  (alpha.water);
 
-fields (p);
-probeLocations
-(
-    (3 0 0)
-);
+// Sampling and I/O settings
+#includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"
+
+// Override settings here, e.g.
+// setConfig { type midPoint; }
+
+// Must be last entry
+#includeEtc "caseDicts/postProcessing/graphs/graph.cfg"
 
 // ************************************************************************* //

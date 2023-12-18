@@ -52,6 +52,49 @@ maxAlphaCo      1;
 
 maxDeltaT       0.01;
 
+functions
+{
+    #includeFunc "probes"
+    #includeFunc "singleGraph"
+    
+    line
+    {
+        type            sets;
+        libs            (sampling);
+        enabled         true;
+        writeControl    adjustableRunTime;
+        writeInterval   0.03125;
+        timeStart   0;
 
+        interpolationScheme cellPoint;
+        setFormat       raw;
+        fixedLocations  false;
+
+        fields
+        (
+            alpha.water
+        );
+
+        sets
+        (
+            line0
+            {
+                type    uniform;
+                axis    z;
+                start   ( 0 0 0.0 );
+                end     ( 0 0 1.0 );
+                nPoints 100;
+            }        
+            line1
+            {
+                type    uniform;
+                axis    z;
+                start   ( 3 0 0.0 );
+                end     ( 3 0 1.0 );
+                nPoints 100;
+            }
+        );
+    }
+}
 
 // ************************************************************************* //
